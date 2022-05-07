@@ -17,18 +17,20 @@ Algorithm
 =end
 
 DEGREE = "\xC2\xB0"
+MINUTES_PER_DEGREE = 60
+SECONDS_PER_MINUTE = 60
 
 def dms(num) 
   degrees = num.to_i
   total_minutes = num * 60
   minutes = (total_minutes % 60).round(2)
-  seconds = (minutes % 1 * 60).round(2)
+  seconds = (minutes % 1 * SECONDS_PER_MINUTE).round(2)
 
-  format_degrees = degrees
-  format_minutes = "%02d" % minutes
-  format_seconds = "%02d" % seconds
+  formatted_degrees = degrees
+  formatted_minutes = "%02d" % minutes
+  formatted_seconds = "%02d" % seconds
 
-  %(#{format_degrees}#{DEGREE}#{format_minutes}'#{format_seconds}")
+  %(#{formatted_degrees}#{DEGREE}#{formatted_minutes}'#{formatted_seconds}")
 end
 
 puts dms(30) == %(30°00'00")
